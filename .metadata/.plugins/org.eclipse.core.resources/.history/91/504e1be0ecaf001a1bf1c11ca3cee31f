@@ -1,0 +1,21 @@
+package com.bookapp.api.books.services;
+
+import java.util.List;
+
+import com.bookapp.api.books.model.Book;
+
+public class BookServiceImpl implements BookService{
+
+	@Override
+	public List<Book> getAllBooks() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Book getBook(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

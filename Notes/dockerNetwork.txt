@@ -1,0 +1,151 @@
+Step 1: Create a Docker Network to let mysql and Spring boot application communicate
+docker network ls
+docker network create product-mysql
+
+Step 2:  Containerize the MySql db from docker hub your spring application and setup VOLUME
+docker volume ls
+Verify Docker imagedocker container run  -v mydata:/var/lib/mysql --name mysqldb8 -p 3300:3300   --network product-mysql -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=florida   -d mysql:5.7
+Verify container 
+Check logs - docker logs 35
+ docker exec –it 35 bash
+mysql -uroot –ppassword   or mysql  -u root  -p        or       chmod -R 755 /var/lib/mysql/ ( ONLY in case of error)
+show databases;
+create table product(id int , name varchar(50), brand varchar(50), price int , primary key (id));
+> insert into product values (1, 'Laptop','Dell',93455);
+
+Step 3:  Containerize the SpringBoot Application .
+Packaging Jar type
+Application.properties file
+spring.datasource.url = jdbc:mysql://mysqldb8:3300/florida?useSSL=false & allowPublicKeyRetrieval=true
+Dockerfile
+M openjdk:8u131-jdk-alpine
+MAINTAINER "Ashu"
+EXPOSE 7010
+COPY ./target/SpringBootProductService.jar   SpringBootProductService.jar 
+CMD ["java","-jar","SpringBootProductService.jar"]
+docker image build -t product-with-mysql  .
+docker  run  --network product-mysql --name product-with-mysql-container -p 7010:7010   product-with-mysql
+netstat -ano|findstr "PID :3306"
+
+*****
+spring.datasource.url = jdbc:mysql://mysqldb8:3306/florida?useSSL=false&allowPublicKeyRetrieval=true&autoReconnect=true
+from Ashu Jauhari to everyone:
+spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL57Dialect
+from Ashu Jauhari to everyone:
+<finalName>SpringBootProductService</finalName>
+from Ashu Jauhari to everyone:
+FROM openjdk:8u131-jdk-alpine
+MAINTAINER "Ashu"
+EXPOSE 7010
+COPY ./target/SpringBootProductService.jar   SpringBootProductService.jar 
+CMD ["java","-jar","SpringBootProductService.jar"]
+#CMD ["java","-Dspring.profiles.active="development", "-jar","product.war"]
+#WORKDIR  /usr/local/bin/
+******
+
+
+Richard cheaterwoood
+Docker hands on for developes
+Docker network . Docker volume and Docker composition
+
+
+Rest Template  Vs Feign client 
+from Ashu Jauhari to everyone:
+composite micorservice
+from Ashu Jauhari to everyone:
+Core Microservice
+from Ashu Jauhari to everyone:
+Pagination and dynamic searching
+from Ashu Jauhari to everyone:
+Spring cloud start feign 
+from Ashu Jauhari to everyone:
+Spring Cloud 
+
+@FeignClient(name="product-ws")                    //,url="http://localhost:8013/")
+//name will contain the name of client service
+public interface VendorFeignClient {
+    @GetMapping("/products") // it means call /products mapping from service whose name id "product-ws
+    String productResponse();
+}
+
+from Ashu Jauhari to everyone:
+@RequestMapping(value = "/allproducts")
+    public ResponseEntity<String> getProductList() {
+    //public String getProductList() {        
+       //  RestTemplate restTemplate = new RestTemplate();
+          //return restTemplate.getForEntity("http://localhost:8013/product-ws/products", String.class);
+        //ResponseEntity<String> response =vendorFeignClient.productResponse();
+         return ResponseEntity.ok().body(vendorFeignClient.productResponse());
+       }
+from Ashu Jauhari to everyone:
+https://www.youtube.com/watch?v=TiRSWyCPRPY&list=PLZdfbI_OZWANT9czd_u4SiQu9hX3SHhRc
+
+from Ashu Jauhari to everyone:
+Springfox Swagger2 2.9.2
+from Ashu Jauhari to everyone:
+springfox-swagger-ui
+from Ashu Jauhari to everyone:
+@EnableSwagger in main()
+from Ashu Jauhari to everyone:
+http://localhost:8011/vendor-ws/v2/api-docs
+from Ashu Jauhari to everyone:
+    /*3. Swagger- JSON Documentation:
+1. Adding Swagger dependency -Springfox Swagger2 2.9.2
+2. Enable Swagger 2 - @EnableSwagger
+3. Call it   http://localhost:8011/vendor-ws/v2/api-docs
+   or 
+   http://localhost:64586/actuator/info
+   
+Swagger - HTML Documentation
+1. Add  dependency Springfox-Swagger-UI 
+2. http://localhost:65193/swagger-ui.html
+    */
+    
+from Ashu Jauhari to everyone:
+<dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+from Ashu Jauhari to everyone:
+ @Bean public Docket swaggerConfiguration() { return 
+    new
+      Docket(DocumentationType.SWAGGER_2) .select()
+      .paths(PathSelectors.ant("/vapi/*"))
+      .apis(RequestHandlerSelectors.basePackage("com.boot")) .build();
+     
+        // Now you will only find documentation for vendor-controller
+        /* Test : http://localhost:8011/vendor-ws/swagger-ui.html
+        http://localhost:8011/vendor-ws/v2/api-docs
+        */
+    }
+from Ashu Jauhari to everyone:
+Hystrix: - Fallback scenario
+from Ashu Jauhari to everyone:
+<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-hystrix -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+            <version>2.2.2.RELEASE</version>
+        </dependency>
+from Ashu Jauhari to everyone:
+@SpringBootApplication
+@EnableDiscoveryClient
+@EnableSwagger2
+@EnableCircuitBreaker
+public class EurekaClientVendorApplication {
+from Ashu Jauhari to everyone:
+@FeignClient(name="product-ws", fallback = ProductFallback.class)                    //,url="http://localhost:8013/")
+//name will contain the name of client service
+public interface VendorFeignClient {
+    @GetMapping("/products") // it means call /products mapping from service whose name id "product-ws
+    String productResponse();
+}
+
+

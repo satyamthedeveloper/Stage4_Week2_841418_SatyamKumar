@@ -1,0 +1,9 @@
+package com.bookapp.api.books.doa;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.bookapp.api.books.model.Book;
+
+public interface BookRepository extends JpaRepository<Book, Integer>{
+
+}

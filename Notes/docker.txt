@@ -1,0 +1,25 @@
+*Docker*
+
+>docker version
+
+>docker images
+
+>docker image rmi %id%
+
+>docker pull nginx
+
+>docker images -q
+
+>docker container ls -a
+
+>docker pull ubuntu
+
+>docker run -it  -d 775
+
+>docker exec -it  994 bash
+
+>docker container prune
+
+>docker stop 994
+
+NOTE FOR TOOLBOX USERS: For all examples that use http://localhost , you'll need to replace with http://192.168.99.100

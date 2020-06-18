@@ -1,0 +1,5 @@
+package com.bookapp.api.books.exceptions;
+
+public class BookNotFoundException extends Exception {
+
+}
