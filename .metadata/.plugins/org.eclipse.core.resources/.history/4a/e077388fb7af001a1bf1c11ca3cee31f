@@ -1,5 +1,0 @@
-package com.bookapp.api.books.ui.controllers;
-
-public class BookController {
-
-}

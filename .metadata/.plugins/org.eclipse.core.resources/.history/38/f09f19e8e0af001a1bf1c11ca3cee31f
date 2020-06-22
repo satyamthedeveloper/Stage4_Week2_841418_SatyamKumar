@@ -1,3 +1,0 @@
-insert into Book values("1", "Java", "Martin", "100.00");
-insert into Book values("2", "JavaScript", "Mark", "200.00");
-insert into Book values("3", "JQuery", "Mary", "349.90");

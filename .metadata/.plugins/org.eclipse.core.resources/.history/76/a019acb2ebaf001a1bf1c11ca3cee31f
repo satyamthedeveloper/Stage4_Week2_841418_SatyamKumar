@@ -1,8 +1,0 @@
-package com.bookapp.api.books.exceptions;
-
-public class BookNotFoundException extends Exception {
-
-	public BookNotFoundException() {
-		// TODO Auto-generated constructor stub
-	}
-}

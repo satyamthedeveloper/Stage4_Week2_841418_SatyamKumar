@@ -1,5 +1,0 @@
-package com.bookapp.api.books.services;
-
-public class BookServiceImpl {
-
-}

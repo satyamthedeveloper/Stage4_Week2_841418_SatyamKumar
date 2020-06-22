@@ -1,5 +1,0 @@
-package com.bookapp.api.books.doa;
-
-public class BookRepository extends JPARepository<Book, Integer>{
-
-}
