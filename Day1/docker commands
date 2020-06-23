@@ -27,3 +27,13 @@
 14. docker image build -t zuul-service-book .
 
 15. docker image build -t book-service .
+
+16. docker images
+
+17. docker container run --name book-discovery -p 8000:8000 --network book-nw -d discovery-book-service
+
+18. docker container run --name zuul-bridge -p 8002:8002 --network book-nw -d zuul-service-book
+
+19. docker container run --name book-service -p 8001:8001 --network book-nw -d book-service
+
+20. docker container ls

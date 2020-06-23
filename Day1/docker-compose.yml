@@ -13,6 +13,7 @@ services:
       - book-nw
     volumes:
       - ./mysqldb:/var/lib/mysql
+      - ./dbscripts:/docker-entrypoint-initdb.d
   
   eureka:
       image: discovery-book-service
@@ -46,6 +47,7 @@ services:
         - zuul
       networks: 
         - book-nw
+      # entrypoint: ./wait-for-it.sh db:3306 --echo "mysql is up"
 
 networks:
   book-nw:
