@@ -33,7 +33,7 @@ public class Controller {
 
 	//provides list of menu item by given id
 	@GetMapping(value="/{id}", produces = MediaType.APPLICATION_JSON)
-	public MenuItem getMenuItem(@PathVariable("id") Long id) {
+	public MenuItem getMenuItem(@PathVariable("id") int id) {
 		log.debug("START");
 		return menuItemSrevice.getMenuItem(id);
 	}

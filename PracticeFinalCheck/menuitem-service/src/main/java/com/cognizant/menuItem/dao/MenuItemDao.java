@@ -5,6 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 import com.cognizant.menuItem.model.MenuItem;
 
 //Extends the Crud Repository to perforn crud operations
-public interface MenuItemDao extends CrudRepository<MenuItem, Long> {
+public interface MenuItemDao extends CrudRepository<MenuItem, Integer> {
 
 }

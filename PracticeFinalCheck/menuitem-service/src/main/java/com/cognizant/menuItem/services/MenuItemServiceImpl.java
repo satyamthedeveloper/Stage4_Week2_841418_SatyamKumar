@@ -22,7 +22,7 @@ public class MenuItemServiceImpl implements MenuItemService {
 		return menuItemDao.findAll();
 	}
 
-	public MenuItem getMenuItem(Long id) {
+	public MenuItem getMenuItem(int id) {
 		log.debug("START");
 		return menuItemDao.findById(id).orElseThrow(MenuItemNotFoundException::new);
 	}

@@ -8,7 +8,7 @@ public interface MenuItemService {
 	//performs business logic about getting all data
 	Iterable<MenuItem> getMenuItemListCustomer();
 	//performs business logic about getting data by id
-	MenuItem getMenuItem(Long id);
+	MenuItem getMenuItem(int id);
 	//performs business logic about setting data in database
 	void modifyMenuItem(MenuItem menuItem);
 
