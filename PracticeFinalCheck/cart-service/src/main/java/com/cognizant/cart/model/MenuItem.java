@@ -1,6 +1,6 @@
 package com.cognizant.cart.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;

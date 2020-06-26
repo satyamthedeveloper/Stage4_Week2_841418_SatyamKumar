@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cognizant.cart.exceptions.ItemNotFoundException;
 import com.cognizant.cart.model.MenuItem;
 import com.cognizant.cart.services.CartService;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -39,6 +40,7 @@ public class CartController {
 
 	//fetch all the cart items of existing users
 	@GetMapping(value="/{userId}", produces = MediaType.APPLICATION_JSON)
+	@HystrixCommand(fallbackMethod = "getDefaultMessage")
 	public ArrayList<MenuItem> getAllCartItems(@PathVariable("userId") int userId) {
 		log.info("START");
 		return cartService.getAllCartItems(userId);
@@ -52,4 +54,18 @@ public class CartController {
 		log.debug("END");
 	}
 
+	ArrayList<MenuItem> getDefaultMessage(int id) {
+		MenuItem menuItem = new MenuItem();
+		menuItem.setId(0);
+		menuItem.setActive(false);
+		menuItem.setCategory("default");
+		menuItem.setDateOfLaunch(null);
+		menuItem.setFreeDelivery(false);
+		menuItem.setName("Default Item");
+		menuItem.setPrice(0);
+		
+		ArrayList<MenuItem> returnList = new ArrayList<MenuItem>();
+		returnList.add(menuItem);
+		return returnList;
+	}
 }
