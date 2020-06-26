@@ -12,4 +12,6 @@ public interface MovieService {
 
 	Iterable<Movie> getActiveMoviesCustomer();
 
+	Movie getMovieById(int id);
+
 }

@@ -7,7 +7,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
-@EnableFeignClients("com.cognizant.ExhangeServiceProxy")
+@EnableFeignClients("com.cognizant.ExchangeServiceProxy")
 @EnableDiscoveryClient
 @EnableCircuitBreaker
 public class CartServiceApplication {

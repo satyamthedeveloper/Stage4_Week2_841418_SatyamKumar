@@ -1,4 +1,4 @@
-package com.cognizant.ExhangeServiceProxy;
+package com.cognizant.ExchangeServiceProxy;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

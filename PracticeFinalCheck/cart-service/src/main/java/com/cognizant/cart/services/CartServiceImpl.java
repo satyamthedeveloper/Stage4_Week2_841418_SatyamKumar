@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cognizant.ExhangeServiceProxy.MenuItemExchangeServiceProxy;
+import com.cognizant.ExchangeServiceProxy.MenuItemExchangeServiceProxy;
 import com.cognizant.cart.dao.CartDao;
 import com.cognizant.cart.exceptions.ItemNotFoundException;
 import com.cognizant.cart.model.Cart;

@@ -1,5 +1,7 @@
 package com.cognizant.movie.controller;
 
+import javax.ws.rs.core.MediaType;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,12 +23,14 @@ public class AdminMovieController {
 	@Autowired
 	private MovieService movieService;
 
-	@GetMapping
+	//fetch movie list for admins
+	@GetMapping(produces = MediaType.APPLICATION_JSON)
 	public Iterable<Movie> getAllMoviesAdmin() {
 		log.info("START");
 		return movieService.getAllMoviesAdmin();
 	}
 
+	//update movie list for admin
 	@PutMapping("/{movieId}")
 	public void editMovieAdmin(@RequestBody Movie updateMovie, @PathVariable("movieId") int movieId) {
 		log.info("START");

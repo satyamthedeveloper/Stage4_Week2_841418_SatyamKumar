@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cognizant.movie.dao.MovieDao;
+import com.cognizant.movie.exceptions.MovieNotFoundException;
 import com.cognizant.movie.model.Movie;
 
 import lombok.extern.slf4j.Slf4j;
@@ -42,6 +43,12 @@ public class MovieServiceImpl implements MovieService{
 	public Iterable<Movie> getActiveMoviesCustomer() {
 		log.debug("START");
 		return movieDao.findAllActive();
+	}
+
+	@Override
+	public Movie getMovieById(int id) {
+		log.debug("START");
+		return movieDao.findById(id).orElseThrow(MovieNotFoundException::new);
 	}
 
 }
