@@ -1,2 +1,2 @@
-hello:
-    greeting: Hello World from Config Server
+eureka.client.service-url.defaultZone: "http://localhost:9050/eureka"
+logging.level.org.springframework.web: DEBUG
