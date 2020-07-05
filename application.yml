@@ -1,9 +1,2 @@
-my:
+hello:
     greeting: Hello World from Config Server
-    list:
-        values: One, Two, Three, Four
-
-db:
-    connection: connection-from-config-Server
-    host: 127:0.0.1
-    port: 1200
