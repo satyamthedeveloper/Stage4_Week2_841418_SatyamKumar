@@ -1,0 +1,124 @@
+version: '3.6'
+services:
+  db:
+    image: 'mysql:8.0.18'
+    container_name: mysqldb
+    ports:
+      - '3300:3300'
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=root
+    networks:
+      - truyum-nw
+      - movie-cruiser-nw
+    volumes:
+      - './mysqldb:/var/lib/mysql'
+      - './dbscripts:/docker-entrypoint-initdb.d'
+  config-server:
+    image: spring-cloud-config-server
+    build: ./spring-cloud-config-server
+    container_name: spring-cloud-config-server
+    ports:
+      - '8888:8888'
+    networks:
+      - truyum-nw
+      - movie-cruiser-nw
+  eureka:
+    image: eureka-discovery-service
+    build: ./eureka-discovery-service
+    container_name: eureka-discovery
+    ports:
+      - '8761:8761'
+    depends_on:
+      - config-server
+      - db
+    networks:
+      - truyum-nw
+      - movie-cruiser-nw
+  zuul:
+    image: zuul-service
+    build: ./zuul-gateway
+    container_name: zuul-bridge
+    ports:
+      - '8762:8762'
+    depends_on:
+      - eureka
+      - config-server
+    networks:
+      - truyum-nw
+      - movie-cruiser-nw
+  auth-service:
+    image: auth-service
+    build: ./Authentication-service
+    container_name: auth-service
+    ports:
+      - '9100:9100'
+    depends_on:
+      - eureka
+      - config-server
+    networks:
+      - truyum-nw
+      - movie-cruiser-nw
+  menu-item-service:
+    image: menu-item-service
+    build: ./menuitem-service
+    container_name: menu-item-service
+    ports:
+      - '34000:34000'
+    depends_on:
+      - eureka
+      - config-server
+      - zuul
+      - db
+      - auth-service
+    networks:
+      - truyum-nw
+  cart-service:
+    image: cart-service
+    build: ./cart-service
+    container_name: cart-service
+    ports:
+      - '34001:34001'
+    depends_on:
+      - eureka
+      - config-server
+      - zuul
+      - db
+      - menu-item-service
+      - auth-service
+    networks:
+      - truyum-nw
+  movie-service:
+    image: movie-service
+    build: ./movie-service
+    container_name: movie-service
+    ports:
+      - '35000:35000'
+    depends_on:
+      - eureka
+      - config-server
+      - db
+      - zuul
+      - auth-service
+    networks:
+      - movie-cruiser-nw
+  favourite-service:
+    image: favourite-service
+    build: ./favorite-service
+    container_name: favourite-service
+    ports:
+      - '35001:35001'
+    depends_on:
+      - eureka
+      - config-server
+      - db
+      - zuul
+      - auth-service
+      - movie-service
+    networks:
+      - movie-cruiser-nw
+networks:
+  truyum-nw:
+    name: truyum-nw
+  movie-cruiser-nw:
+    name: movie-cruiser-nw
