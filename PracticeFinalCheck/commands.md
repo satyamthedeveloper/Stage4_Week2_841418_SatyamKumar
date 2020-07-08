@@ -1,39 +1,58 @@
-1. docker network ls
+##____ DOCKER COMMANDS ____##
 
-2. docker network create book-nw
+Step 1:
+open cmd in root directory.
+Check docker network's list
+> docker network ls
 
-3. docker container run --name mysqldb -p 3300:3300 --network book-nw -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=user_database -d mysql:8.0.18
+Step 2:
+build images of your Dockerfile
+> docker-compose build
 
-4. docker container ls
+step 3:
+Check weather images has been added into image list
+> docker images
 
-5. docker logs bd
+Note: You can also check that it has not started the container yet.
 
-6. docker exec -it bd bash
+step 4:
+execute your docker-compose images
+> docker-compose run
 
-7. mysql -u root -p
+Note: This process will take few minutes and few containers may fail to start due to dependency on previous containers. Depends-on take care that it has started in order but still not every microservice which is up is ready to deliver its services. 
 
-8. use user_database
+step 5:
+Check all containers list.
+> docker container ls -a
 
-9. create table book (id int, title varchar(30), author varchar(30), price float);
 
-10. insert into book values(1, 'JavaScript', 'Nick', 220.56);
+step 6: (Optional)
+Check your mysql container is initialised with your database or not.
 
-11. exit
+    > docker exec -it %mysqldb_id% bash
+    Note: replace %mysqldb_id% with id for your mysql container.
 
-12. exit
+    Enter username and password.
+    > mysql -u root -p
 
-13. docker image build -t discovery-book-service .
+    > show databases;
 
-14. docker image build -t zuul-service-book .
+    Note: You can check your tables and data also if initialised.
 
-15. docker image build -t book-service .
+    Exit user
+    > exit
 
-16. docker images
+    Exit mysql
+    > exit
 
-17. docker container run --name book-discovery -p 8000:8000 --network book-nw -d discovery-book-service
+step 7: 
+If any of your container has not started, start it again.
 
-18. docker container run --name zuul-bridge -p 8002:8002 --network book-nw -d zuul-service-book
+> docker container start %container_id%
 
-19. docker container run --name book-service -p 8001:8001 --network book-nw -d book-service
+step 8: (Optional)
+To check the logs of your container. Use this command
 
-20. docker container ls
+> docker logs %container_id%
+
+
