@@ -17,7 +17,7 @@ services:
   config-server:
     image: spring-cloud-config-server
     build: ./spring-cloud-config-server
-    container_name: spring-cloud-config-server
+    container_name: config-server
     ports:
       - '8888:8888'
     networks:
@@ -120,5 +120,7 @@ services:
 networks:
   truyum-nw:
     name: truyum-nw
+    driver: bridge
   movie-cruiser-nw:
     name: movie-cruiser-nw
+    driver: bridge

@@ -17,7 +17,7 @@ Note: You can also check that it has not started the container yet.
 
 step 4:
 execute your docker-compose images
-> docker-compose run
+> docker-compose up
 
 Note: This process will take few minutes and few containers may fail to start due to dependency on previous containers. Depends-on take care that it has started in order but still not every microservice which is up is ready to deliver its services. 
 

@@ -1,0 +1,10 @@
+spring:
+    application:
+        name: favortie-ws
+    cloud:
+        config:
+            fail-fast: true
+            retry:
+                maxAttempts: 20
+                maxInterval: 10000
+            uri: http://config-server:8888
