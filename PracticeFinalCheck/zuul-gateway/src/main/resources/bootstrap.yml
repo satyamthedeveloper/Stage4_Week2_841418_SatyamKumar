@@ -5,6 +5,8 @@ spring:
         config:
             fail-fast: true
             retry:
-                maxAttempts: 20
+                maxAttempts: 200
                 maxInterval: 10000
-            uri: http://config-server:8888
+#            ------ FOR DOCKER-COMPOSE!!! ------    
+#            uri: http://config-server:8888
+            uri: http://localhost:8888
