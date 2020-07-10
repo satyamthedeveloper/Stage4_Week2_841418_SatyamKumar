@@ -56,3 +56,4 @@ To check the logs of your container. Use this command
 > docker logs %container_id%
 
 
+NOTE: menu_item and movie_list contains sample data in json format.

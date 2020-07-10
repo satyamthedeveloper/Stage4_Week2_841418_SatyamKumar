@@ -1,0 +1,29 @@
+[
+	{
+		"id" : 1,
+		"active" : "1",
+		"category" : "Starters",
+		"date_of_launch" : "2020-06-24 00:00:00.000000",
+		"free_delivery" : "1",
+		"name" : "Paneer Tikka",
+		"price" : 180
+	},
+	{
+		"id" : 2,
+		"active" : "1",
+		"category" : "Main Course",
+		"date_of_launch" : "2020-06-16 00:00:00.000000",
+		"free_delivery" : "1",
+		"name" : "Sushi",
+		"price" : 240
+	},
+	{
+		"id" : 3,
+		"active" : "1",
+		"category" : "Main Course",
+		"date_of_launch" : "2020-06-10 00:00:00.000000",
+		"free_delivery" : "1",
+		"name" : "Shahi Paneer",
+		"price" : 210
+	}
+]

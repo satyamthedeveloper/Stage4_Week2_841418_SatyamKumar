@@ -1,0 +1,22 @@
+[
+	{
+		"id" : 1,
+		"poster_link" : "https://upload.wikimedia.org/wikipedia/en/thumb/a/ac/Singham_%282011_Hindi_film%29_Theatrical_poster.jpg/220px-Singham_%282011_Hindi_film%29_Theatrical_poster.jpg",
+		"active" : "1",
+		"box_office" : "INOX",
+		"date_of_launch" : "2015-06-24",
+		"genre" : "Action Comedy",
+		"has_teaser" : "1",
+		"title" : "Singham"
+	},
+	{
+		"id" : 2,
+		"poster_link" : "https://www.gannett-cdn.com/-mm-/1aca93bc37febd983f059c66dc84b96d0210da8e/c=0-26-2419-3251/local/-/media/2016/05/13/USATODAY/USATODAY/635987003589248591-XXX-TOP-GUN-MOV-JY-0439-54171713.JPG",
+		"active" : "0",
+		"box_office" : "Hollywood",
+		"date_of_launch" : "1990-05-21",
+		"genre" : "Action",
+		"has_teaser" : "1",
+		"title" : "Top Gun"
+	}
+]
